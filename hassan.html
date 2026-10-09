@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101116"><title>FF Loadout Lab — Sensitivity & Damage Calculator</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0c10;--panel:#171a20;--panel2:#20242c;--line:#343945;--text:#f6f7fb;--muted:#a3aab9;--accent:#ffb529;--orange:#ff7a26;--good:#72e2a2;--bad:#ff7075;--radius:18px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#51321c 0,transparent 37%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button,select,input{outline-offset:3px}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent)}.shell{max-width:1180px;margin:auto;padding:18px 16px 70px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:1.25rem;font-weight:900;letter-spacing:.05em}.brand b{color:var(--accent)}.pill{border:1px solid #6e4b22;background:#2b2318;color:#ffcf75;border-radius:99px;padding:5px 11px;font-size:.76rem;font-weight:750}.hero{padding:48px 0 26px}.eyebrow{text-transform:uppercase;letter-spacing:.18em;color:var(--accent);font-size:.72rem;font-weight:850}.hero h1{font-size:clamp(2rem,5vw,3.9rem);line-height:1.09;margin:10px 0 12px;max-width:830px}.hero h1 span{color:var(--accent)}.sub{max-width:720px;color:var(--muted);margin:0}.notice{border-left:3px solid var(--accent);padding:10px 15px;background:#282117;color:#e4d2b3;border-radius:0 10px 10px 0;margin:20px 0 24px;font-size:.86rem}.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}.tab{white-space:nowrap}.btn,.tab{background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:10px 15px;border-radius:11px;cursor:pointer;font-weight:750;transition:.2s}.btn:hover,.tab:hover{border-color:var(--accent);transform:translateY(-1px)}.btn.primary,.tab[aria-selected=true]{background:linear-gradient(115deg,var(--accent),var(--orange));border-color:transparent;color:#17100a}.btn.danger{border-color:#703d43;color:#ff9da2}.tabview{display:none}.tabview.active{display:block}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(160deg,#1b1e25,var(--panel));border:1px solid var(--line);padding:21px;border-radius:var(--radius);box-shadow:0 12px 34px #0002;min-width:0}.card.full{grid-column:1/-1}.card h2{font-size:1.18rem;margin:0 0 8px}.card h3{font-size:1rem;margin:0 0 12px}.muted,.hint{color:var(--muted)}.hint{font-size:.82rem}.field{margin:15px 0}.field label{display:block;font-size:.84rem;color:#d2d6e0;margin-bottom:7px;font-weight:700}select,input[type=search],input[type=number]{width:100%;background:#101319;color:var(--text);border:1px solid #434955;border-radius:10px;padding:11px;min-width:0}input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}.slider-row{display:grid;grid-template-columns:112px 1fr 47px;align-items:center;gap:12px;margin:13px 0}.slider-row label{font-size:.85rem;font-weight:650}.slider-row output{color:var(--accent);text-align:right;font-weight:850;font-variant-numeric:tabular-nums}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{padding:14px;background:#101319;border:1px solid var(--line);border-radius:12px}.metric strong{font-size:1.45rem;display:block;color:var(--accent);font-variant-numeric:tabular-nums}.metric span{color:var(--muted);font-size:.78rem}.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}.weaponname{font-size:1.3rem;font-weight:900;color:var(--accent);margin:10px 0}.stat{margin:14px 0}.statline{display:flex;justify-content:space-between;gap:10px;font-size:.83rem;color:#d0d5dd;margin-bottom:6px}.track{height:9px;background:#353943;border-radius:100px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#ff7b30,#ffce50);width:0%;transition:width .28s}.fill.blue{background:linear-gradient(90deg,#42a9dd,#79dfd5)}.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.result{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.result .metric strong{font-size:1.3rem}.section-title{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:850;margin:18px 0 9px}.skill-tags{display:flex;flex-wrap:wrap;gap:7px}.tag{padding:6px 9px;border:1px solid #51462b;border-radius:20px;background:#2a261c;color:#ffce71;font-size:.76rem}.search-note{padding:10px 13px;border-radius:10px;background:#252b32;color:var(--muted);margin-top:10px;font-size:.83rem}.footer{margin-top:28px;text-align:center;color:#898f9c;font-size:.78rem}#toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,20px);background:#eee;color:#181818;border-radius:12px;padding:12px 18px;box-shadow:0 12px 40px #0008;z-index:5;opacity:0;pointer-events:none;transition:.2s}#toast.show{opacity:1;transform:translate(-50%,0)}[hidden]{display:none!important}@media(max-width:740px){.grid,.compare-grid,.pair{grid-template-columns:1fr}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:16px}.hero{padding:30px 0 20px}.slider-row{grid-template-columns:95px 1fr 40px;gap:8px}.shell{padding-inline:12px}.result{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand">⚡ FF <b>LOADOUT LAB</b></div><span class="pill">FAN-MADE • OFFLINE READY</span></header>
+<section class="hero"><div class="eyebrow">Gaming configuration toolkit</div><h1>Find your <span>ideal setup.</span><br>Compare every shot.</h1><p class="sub">Tune device sensitivity, compare weapon builds, estimate armor-adjusted damage, and explore skill synergies in one responsive tool.</p></section>
+<div class="notice"><strong>Model disclaimer:</strong> Weapon numbers, armor reductions, and skill buff values below are <strong>illustrative tuning estimates</strong>, not official Garena data. Real matches vary by game version, distance, upgrades, accuracy, and player movement. Sensitivity recommendations are starting points, not guaranteed optimal settings.</div>
+<nav class="tabs" aria-label="Tool sections"><button class="tab" data-tab="sens" aria-selected="true">🎯 Sensitivity</button><button class="tab" data-tab="weapons" aria-selected="false">🔫 Weapons & Damage</button><button class="tab" data-tab="skills" aria-selected="false">✨ Character Skills</button></nav>
+<main>
+<section id="sens" class="tabview active" aria-label="Sensitivity calculator"><div class="grid"><article class="card"><h2>Device profile</h2><p class="hint">Select a device class to generate a fresh recommended sensitivity preset.</p><div class="field"><label for="device">Device type</label><select id="device"><option value="low">Low-End Android</option><option value="high">High-End Android</option><option value="ios">iPhone / iPad</option></select></div><div class="field"><label for="playstyle">Play style</label><select id="playstyle"><option value="balanced">Balanced</option><option value="rush">Aggressive / Rush (+8)</option><option value="precision">Precision / Long-range (−8)</option></select></div><div class="actions"><button class="btn primary" id="generate">Generate Preset</button><button class="btn" id="copy">Copy Settings</button></div></article><article class="card"><h2>Recommended values</h2><p class="hint">Adjust individual sliders manually from 0–200. Settings are automatically saved to this browser.</p><div id="sliders"></div></article><article class="card full"><h2>Profile summary</h2><div id="sensSummary" class="metric-grid" aria-live="polite"></div><p class="hint">Tip: test a preset in your training area, then make small adjustments. A high setting is not always more accurate.</p><div class="actions"><button class="btn danger" id="resetAll">↺ Reset All Tools</button></div></article></div></section>
+<section id="weapons" class="tabview" aria-label="Weapons and damage calculator"><div class="grid"><article class="card full"><h2>Weapon comparison</h2><div class="field"><label for="weaponSearch">Search weapons</label><input id="weaponSearch" type="search" placeholder="Search MP40, Vector, M4A1, AK…" autocomplete="off"><div id="searchCount" class="search-note" aria-live="polite"></div></div><div class="pair"><div class="field"><label for="weaponA">Weapon A</label><select id="weaponA"></select></div><div class="field"><label for="weaponB">Weapon B</label><select id="weaponB"></select></div></div><div class="compare-grid"><div><div class="weaponname" id="nameA"></div><div id="statsA"></div></div><div><div class="weaponname" id="nameB"></div><div id="statsB"></div></div></div></article><article class="card"><h2>Damage calculator</h2><p class="hint">Choose armor and estimated target HP. Calculations assume every shot hits; no distance drop-off.</p><div class="pair"><div class="field"><label for="vest">Vest level</label><select id="vest"><option value="0">No vest</option><option value="1">Level 1</option><option value="2" selected>Level 2</option><option value="3">Level 3</option><option value="4">Level 4 (model)</option></select></div><div class="field"><label for="helmet">Helmet level</label><select id="helmet"><option value="0">No helmet</option><option value="1">Level 1</option><option value="2" selected>Level 2</option><option value="3">Level 3</option><option value="4">Level 4 (model)</option></select></div></div><div class="field"><label for="hp">Target HP (1–500)</label><input id="hp" type="number" min="1" max="500" step="1" value="200"></div><p class="hint">Illustrative vest reduction: 0 / 15 / 25 / 35 / 45%; helmet reduction: 0 / 20 / 30 / 40 / 50%. Headshot multiplier: 2×.</p></article><article class="card"><h2>Armor-adjusted results</h2><div id="damageResults" class="compare-grid" aria-live="polite"></div><p class="hint">TTK = (shots to eliminate − 1) ÷ shots per second. It excludes aim, travel, reload, abilities, and server lag.</p></article></div></section>
+<section id="skills" class="tabview" aria-label="Character skills"><div class="grid"><article class="card"><h2>Build your character combo</h2><div class="field"><label for="charSearch">Search characters</label><input id="charSearch" type="search" placeholder="Search by character or effect…" autocomplete="off"><div id="charMatches" class="search-note" aria-live="polite"></div></div><div class="field"><label for="activeSkill">Active skill (1)</label><select id="activeSkill"></select></div><div class="field"><label for="passive1">Passive slot 1</label><select id="passive1"></select></div><div class="field"><label for="passive2">Passive slot 2</label><select id="passive2"></select></div><div class="field"><label for="passive3">Passive slot 3</label><select id="passive3"></select></div><button id="skillReset" class="btn">Reset Skill Combo</button></article><article class="card"><h2>Combined buff overview</h2><p class="hint">Displayed bonuses are simplified estimates. Conditional effects are not assumed to be active simultaneously in real gameplay.</p><div id="buffMetrics" class="metric-grid" aria-live="polite"></div><div class="section-title">Selected skill effects</div><div id="skillEffects"></div></article></div></section>
+</main><footer class="footer">FF Loadout Lab • Independent fan utility • Not affiliated with or endorsed by Garena or Free Fire • No account login required</footer></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+/* All gameplay-like values below are explicitly illustrative, editable baseline assumptions. */
+const $=id=>document.getElementById(id);
+const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+const fmt=n=>Number.isFinite(n)?n.toFixed(2):'—';
+const storeKey='ff-loadout-lab-v1';
+const sensitivityNames=['General','Red Dot','2x Scope','4x Scope','Sniper Scope','Free Look'];
+const presets={low:[175,166,158,145,95,135],high:[155,145,136,125,83,122],ios:[162,153,145,131,88,128]};
+const weapons=[
+{name:'MP40',damage:48,fire:83,range:22,reload:70,accuracy:48,rpm:840},
+{name:'Vector',damage:47,fire:91,range:19,reload:61,accuracy:54,rpm:900},
+{name:'M4A1',damage:53,fire:66,range:72,reload:73,accuracy:75,rpm:600},
+{name:'AK',damage:65,fire:54,range:68,reload:58,accuracy:58,rpm:510},
+{name:'UMP',damage:50,fire:76,range:34,reload:72,accuracy:65,rpm:720},
+{name:'SCAR',damage:54,fire:63,range:69,reload:76,accuracy:73,rpm:570},
+{name:'XM8',damage:55,fire:65,range:70,reload:72,accuracy:78,rpm:590},
+{name:'M1014',damage:92,fire:24,range:13,reload:36,accuracy:35,rpm:90},
+{name:'AWM',damage:100,fire:11,range:100,reload:25,accuracy:91,rpm:35},
+{name:'Desert Eagle',damage:90,fire:27,range:53,reload:52,accuracy:65,rpm:190}];
+// Buff units: hpPerSec, speedPct, reductionPct, other descriptive effects.
+const activeSkills=[
+{name:'Alok',desc:'Healing aura and faster movement (illustrative)',hp:5,speed:12,reduce:0},
+{name:'Chrono',desc:'Temporary shield / defensive ability (situational)',hp:0,speed:0,reduce:15},
+{name:'K',desc:'EP conversion / recovery support (illustrative equivalent)',hp:2,speed:0,reduce:0},
+{name:'Homer',desc:'Detection and enemy movement disruption',hp:0,speed:0,reduce:0},
+{name:'Tatsuya',desc:'Quick directional dash',hp:0,speed:10,reduce:0}];
+const passiveSkills=[
+{name:'None',desc:'No passive bonus',hp:0,speed:0,reduce:0},
+{name:'Kelly',desc:'Sprint movement bonus',hp:0,speed:6,reduce:0},
+{name:'Jota',desc:'HP restoration on combat triggers (averaged model)',hp:2,speed:0,reduce:0},
+{name:'Hayato',desc:'Armor penetration when HP is reduced (not in damage model)',hp:0,speed:0,reduce:0},
+{name:'Moco',desc:'Mark hit enemies',hp:0,speed:0,reduce:0},
+{name:'Andrew',desc:'Vest durability / protection (simplified)',hp:0,speed:0,reduce:5},
+{name:'D-Bee',desc:'Move-and-fire accuracy support',hp:0,speed:4,reduce:0},
+{name:'Leon',desc:'Recovery after engagement (averaged model)',hp:1,speed:0,reduce:0}];
+const defaultState=()=>({device:'low',playstyle:'balanced',sens:[...presets.low],weaponA:'MP40',weaponB:'Vector',vest:'2',helmet:'2',hp:200,active:'Alok',p1:'Kelly',p2:'Jota',p3:'Andrew'});
+let state=defaultState(),toastTimer;
+try{const saved=JSON.parse(localStorage.getItem(storeKey)||'null');if(saved&&typeof saved==='object'){
+ const d=defaultState();state={...d,...saved};
+ if(!Array.isArray(state.sens)||state.sens.length!==6)state.sens=[...d.sens];
+ state.sens=state.sens.map((n,i)=>clamp(Number.isFinite(Number(n))?Number(n):d.sens[i],0,200));
+ if(!presets[state.device])state.device=d.device;
+ if(!['balanced','rush','precision'].includes(state.playstyle))state.playstyle=d.playstyle;
+ }}catch(e){/* Storage may be disabled: continue with in-memory defaults. */}
+function save(){try{localStorage.setItem(storeKey,JSON.stringify(state));}catch(e){}}
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
+function makeOption(item){const o=document.createElement('option');o.value=item.name;o.textContent=item.name;return o;}
+function fillSelect(el,items){el.replaceChildren(...items.map(makeOption));}
+function initSliders(){const root=$('sliders');root.replaceChildren();sensitivityNames.forEach((name,i)=>{
+ const row=document.createElement('div');row.className='slider-row';const label=document.createElement('label');label.htmlFor=`sens${i}`;label.textContent=name;
+ const range=document.createElement('input');range.type='range';range.min=0;range.max=200;range.step=1;range.id=`sens${i}`;range.value=state.sens[i];range.setAttribute('aria-label',name+' sensitivity');
+ const val=document.createElement('output');val.htmlFor=range.id;val.textContent=state.sens[i];
+ range.addEventListener('input',()=>{state.sens[i]=Number(range.value);val.textContent=range.value;renderSensSummary();save();});row.append(label,range,val);root.appendChild(row);});}
+function renderSensSummary(){const stats=[['Average sensitivity',Math.round(state.sens.reduce((a,b)=>a+b,0)/6)],['Highest',Math.max(...state.sens)],['Lowest',Math.min(...state.sens)]];
+ $('sensSummary').innerHTML=stats.map(([label,v])=>`<div class="metric"><strong>${v}</strong><span>${label}</span></div>`).join('');}
+function generate(){const delta={balanced:0,rush:8,precision:-8}[state.playstyle];state.sens=presets[state.device].map(v=>clamp(v+delta,0,200));initSliders();renderSensSummary();save();toast('Preset generated');}
+async function copySettings(){const content=`FF Loadout Lab | ${$('device').selectedOptions[0].text} | ${$('playstyle').selectedOptions[0].text}\n`+sensitivityNames.map((n,i)=>`${n}: ${state.sens[i]}`).join('\n');
+ try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(content);}else{const input=document.createElement('textarea');input.value=content;input.style.position='fixed';input.style.opacity='0';document.body.append(input);input.select();if(!document.execCommand('copy'))throw Error('Copy unsupported');input.remove();}toast('Settings copied to clipboard');}catch(e){toast('Copy unavailable — try HTTPS or localhost');}}
+function weapon(name){return weapons.find(w=>w.name===name)||weapons[0];}
+function bar(stat,v,blue){return `<div class="stat"><div class="statline"><span>${stat}</span><strong>${v}/100</strong></div><div class="track"><div class="fill ${blue?'blue':''}" style="width:${v}%"></div></div></div>`;}
+function renderWeapons(){const a=weapon(state.weaponA),b=weapon(state.weaponB);$('nameA').textContent=a.name;$('nameB').textContent=b.name;
+ for(const [target,w,isBlue] of [['statsA',a,false],['statsB',b,true]]){
+ $(target).innerHTML=[['Damage',w.damage],['Rate of Fire',w.fire],['Range',w.range],['Reload Speed',w.reload],['Accuracy',w.accuracy]].map(([k,v])=>bar(k,v,isBlue)).join('')+`<p class="hint">Illustrative firing rate: ${w.rpm} RPM</p>`;
+ }renderDamage();}
+function computeDamage(w){const vest=[0,.15,.25,.35,.45][Number(state.vest)],helm=[0,.20,.30,.40,.50][Number(state.helmet)],hp=state.hp;
+ const body=w.damage*(1-vest),head=w.damage*2*(1-helm);
+ const shotsB=Math.max(1,Math.ceil((hp-1e-10)/body)),shotsH=Math.max(1,Math.ceil((hp-1e-10)/head));
+ return {body,head,shotsB,shotsH,ttkB:(shotsB-1)*60/w.rpm,ttkH:(shotsH-1)*60/w.rpm};}
+function renderDamage(){const out=$('damageResults');out.replaceChildren();for(const key of ['weaponA','weaponB']){const w=weapon(state[key]),d=computeDamage(w),section=document.createElement('div');
+ section.innerHTML=`<h3>${w.name}</h3><div class="result"><div class="metric"><strong>${fmt(d.body)}</strong><span>Body / hit</span></div><div class="metric"><strong>${fmt(d.head)}</strong><span>Head / hit</span></div><div class="metric"><strong>${d.shotsB}</strong><span>Body shots</span></div><div class="metric"><strong>${d.shotsH}</strong><span>Head shots</span></div><div class="metric"><strong>${fmt(d.ttkB)}s</strong><span>Body TTK</span></div><div class="metric"><strong>${fmt(d.ttkH)}s</strong><span>Head TTK</span></div></div>`;out.append(section);}}
+function renderSkillOptions(search=''){const term=search.toLowerCase().trim();const filter=x=>x.name.toLowerCase().includes(term)||x.desc.toLowerCase().includes(term);const a=activeSkills.filter(filter),p=passiveSkills.filter(filter);
+ // Search filters the option lists but preserves currently chosen options, so a filtered search never erases your build.
+ const populate=(id,all,matches,current)=>{const chosen=all.find(x=>x.name===current);const items=matches.slice();if(chosen&&!items.some(x=>x.name===current))items.unshift(chosen);fillSelect($(id),items);$(id).value=current;};
+ populate('activeSkill',activeSkills,a,state.active);for(const [id,key] of [['passive1','p1'],['passive2','p2'],['passive3','p3']])populate(id,passiveSkills,p,state[key]);
+ $('charMatches').textContent=`${a.length} matching active • ${p.length} matching passive skills`;
+}
+function selectedSkills(){return [activeSkills.find(s=>s.name===state.active),...[state.p1,state.p2,state.p3].map(n=>passiveSkills.find(s=>s.name===n))].filter(Boolean);}
+function renderSkills(){const skills=selectedSkills(),totals=skills.reduce((a,s)=>({hp:a.hp+s.hp,speed:a.speed+s.speed,reduce:a.reduce+s.reduce}),{hp:0,speed:0,reduce:0});
+ const values=[['HP recovery',`${totals.hp} HP/s`],['Movement boost',`+${totals.speed}%`],['Damage reduction',`${totals.reduce}%`]];
+ $('buffMetrics').innerHTML=values.map(([k,v])=>`<div class="metric"><strong>${v}</strong><span>${k}</span></div>`).join('');
+ $('skillEffects').replaceChildren(...skills.map(s=>{const line=document.createElement('p');line.className='hint';const b=document.createElement('strong');b.style.color='var(--accent)';b.textContent=s.name+' — ';line.append(b,document.createTextNode(s.desc));return line;}));}
+function checkDuplicates(changed){const keys=['p1','p2','p3'];if(state[changed]!=='None'){for(const k of keys){if(k!==changed&&state[k]===state[changed]){state[k]='None';$({p1:'passive1',p2:'passive2',p3:'passive3'}[k]).value='None';toast('Duplicate passive removed');}}}renderSkills();save();}
+function sync(){for(const [id,key] of [['device','device'],['playstyle','playstyle'],['weaponA','weaponA'],['weaponB','weaponB'],['vest','vest'],['helmet','helmet'],['activeSkill','active'],['passive1','p1'],['passive2','p2'],['passive3','p3']]){const el=$(id);if([...el.options].some(o=>o.value===state[key]))el.value=state[key];}
+ $('hp').value=state.hp;initSliders();renderSensSummary();renderWeapons();renderSkillOptions($('charSearch').value);renderSkills();}
+function init(){fillSelect($('weaponA'),weapons);fillSelect($('weaponB'),weapons);sync();
+ document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',String(t===tab)));document.querySelectorAll('.tabview').forEach(p=>p.classList.toggle('active',p.id===tab.dataset.tab));}));
+ for(const id of ['device','playstyle'])$(id).addEventListener('change',()=>{state[id]=$(id).value;generate();});
+ $('generate').addEventListener('click',generate);$('copy').addEventListener('click',copySettings);
+ for(const id of ['weaponA','weaponB','vest','helmet'])$(id).addEventListener('change',()=>{state[id]=$(id).value;renderWeapons();save();});
+ $('hp').addEventListener('input',()=>{const raw=Number($('hp').value);if(Number.isFinite(raw)&&raw>=1){state.hp=clamp(Math.round(raw),1,500);renderDamage();save();}});
+ $('hp').addEventListener('change',()=>{$('hp').value=state.hp;});
+ $('weaponSearch').addEventListener('input',()=>{const term=$('weaponSearch').value.trim().toLowerCase();const matches=weapons.filter(w=>w.name.toLowerCase().includes(term));
+ for(const id of ['weaponA','weaponB']){const current=state[id],options=matches.slice();if(!options.some(w=>w.name===current))options.unshift(weapon(current));fillSelect($(id),options);$(id).value=current;}
+ $('searchCount').textContent=matches.length?`${matches.length} matching weapons`:'No matching weapons — current choices retained';});
+ $('charSearch').addEventListener('input',()=>renderSkillOptions($('charSearch').value));
+ $('activeSkill').addEventListener('change',()=>{state.active=$('activeSkill').value;renderSkills();save();});
+ for(const [id,key] of [['passive1','p1'],['passive2','p2'],['passive3','p3']])$(id).addEventListener('change',()=>{state[key]=$(id).value;checkDuplicates(key);});
+ $('skillReset').addEventListener('click',()=>{const d=defaultState();Object.assign(state,{active:d.active,p1:d.p1,p2:d.p2,p3:d.p3});$('charSearch').value='';renderSkillOptions();renderSkills();save();toast('Skills reset');});
+ $('resetAll').addEventListener('click',()=>{state=defaultState();$('weaponSearch').value='';$('charSearch').value='';fillSelect($('weaponA'),weapons);fillSelect($('weaponB'),weapons);sync();$('searchCount').textContent=`${weapons.length} weapons available`;save();toast('All settings restored');});
+ $('searchCount').textContent=`${weapons.length} weapons available`;
+}
+init();
+</script>
+</body>
+</html>
